@@ -6,11 +6,11 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Dapper;
-using MedicoEspecialidadeWebAPI.Models;
+using AgendamentoWebAPI.Models;
 using MySqlConnector;
-using MedicoEspecialidadeWebAPI.Extensions;
+using AgendamentoWebAPI.Extensions;
 
-namespace MedicoEspecialidadeWebAPI.Repository
+namespace AgendamentoWebAPI.Repository
 {
     public class EspecialidadesDatabase : IEspecialidadesDatabase
     {

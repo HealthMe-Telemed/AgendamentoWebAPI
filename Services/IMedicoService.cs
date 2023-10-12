@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MedicoEspecialidadeWebAPI.Models;
+using AgendamentoWebAPI.Models;
 
-namespace MedicoEspecialidadeWebAPI.Services
+namespace AgendamentoWebAPI.Services
 {
     public interface IMedicoService
     {

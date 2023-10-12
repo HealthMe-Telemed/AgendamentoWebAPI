@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MedicoEspecialidadeWebAPI.Extensions
+namespace AgendamentoWebAPI.Extensions
 {
     public static class QueryExtensions
     {

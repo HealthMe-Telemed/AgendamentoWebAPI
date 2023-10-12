@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MedicoEspecialidadeWebAPI.Models;
-using MedicoEspecialidadeWebAPI.Repository;
+using AgendamentoWebAPI.Models;
+using AgendamentoWebAPI.Repository;
 
-namespace MedicoEspecialidadeWebAPI.Services
+namespace AgendamentoWebAPI.Services
 {
     
     public class EspecialidadesService : IEspecialidadesService

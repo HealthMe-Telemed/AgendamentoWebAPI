@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using MedicoEspecialidadeWebAPI.Extensions;
-using MedicoEspecialidadeWebAPI.Models;
+using AgendamentoWebAPI.Extensions;
+using AgendamentoWebAPI.Models;
 using MySqlConnector;
 
-namespace MedicoEspecialidadeWebAPI.Repository
+namespace AgendamentoWebAPI.Repository
 {
     public class MedicoDatabase : IMedicoDatabase
     {

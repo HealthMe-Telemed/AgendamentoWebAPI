@@ -1,12 +1,13 @@
-using MedicoEspecialidadeWebAPI.Models;
-using MedicoEspecialidadeWebAPI.Services;
+
+using AgendamentoWebAPI.Models;
+using AgendamentoWebAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedicoEspecialidadeWebAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("agendamentos/[controller]")]
 public class EspecialidadesController : ControllerBase
 {
     private readonly ILogger<EspecialidadesController> _logger;

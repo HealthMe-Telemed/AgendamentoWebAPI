@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using MedicoEspecialidadeWebAPI.Models;
-using MedicoEspecialidadeWebAPI.Services;
+using AgendamentoWebAPI.Models;
+using AgendamentoWebAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace MedicoEspecialidadeWebAPI.Controllers
+namespace AgendamentoWebAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("agendamentos/[controller]")]
     public class MedicosController : Controller
     {
         private readonly ILogger<MedicosController> _logger;

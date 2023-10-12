@@ -1,7 +1,7 @@
 using System.Text;
-using MedicoEspecialidadeWebAPI.Models;
-using MedicoEspecialidadeWebAPI.Repository;
-using MedicoEspecialidadeWebAPI.Services;
+using AgendamentoWebAPI.Models;
+using AgendamentoWebAPI.Repository;
+using AgendamentoWebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -17,7 +17,7 @@ services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MedicoEspecialidadeWebAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AgendamentoWebAPI", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description =
@@ -52,6 +52,8 @@ services.AddScoped<IEspecialidadesService, EspecialidadesService>();
 services.AddScoped<IEspecialidadesDatabase, EspecialidadesDatabase>();
 services.AddScoped<IMedicoService, MedicoService>();
 services.AddScoped<IMedicoDatabase, MedicoDatabase>();
+services.AddScoped<IDataHoraAgendamentoDatabase, DataHoraAgendamentoDatabase>();
+services.AddScoped<IDataHoraAgendamentoService, DataHoraAgendamentoService>();
 
 var key = Encoding.ASCII.GetBytes(Settings.Secret);
     services.AddAuthentication(x =>
