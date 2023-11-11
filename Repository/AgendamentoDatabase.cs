@@ -77,13 +77,31 @@ namespace AgendamentoWebAPI.Repository
             }
         }
 
-        public async Task<List<Agendamento>> EncontrarAgendamentos(int idPaciente)
+        public async Task<List<Agendamento>> EncontrarAgendamentosMedico(int idMedico)
+        {
+            try
+            {
+                _logger.LogInformation($"Buscando agendamentos para o medico com id {idMedico}...");
+                
+                var agendamentos = await _database.QueryAsync<Agendamento>(QueryExtensions.BuscarAgendamentosMedico(),
+                new { idMedico });
+                return agendamentos.ToList();
+            }
+
+            catch(Exception ex)
+            {
+                _logger.LogError($"Ocorreu um erro inesperado!! Segue o erro: {ex.Message}");
+                throw new Exception("Ocorreu um erro inesperado!!");
+            }
+        }
+
+        public async Task<List<Agendamento>> EncontrarAgendamentosPaciente(int idPaciente)
         {
             try
             {
                 _logger.LogInformation($"Buscando agendamentos para o paciente com id {idPaciente}...");
                 
-                var agendamentos = await _database.QueryAsync<Agendamento>(QueryExtensions.BuscarAgendamentos(),
+                var agendamentos = await _database.QueryAsync<Agendamento>(QueryExtensions.BuscarAgendamentosPaciente(),
                 new { idPaciente });
                 return agendamentos.ToList();
             }

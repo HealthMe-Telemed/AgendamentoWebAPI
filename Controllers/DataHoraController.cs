@@ -24,7 +24,7 @@ namespace AgendamentoWebAPI.Controllers
 
         [HttpGet]
         [Route("paciente/{idPaciente}/medico/{idMedico}")]
-        //[Authorize(Roles = "Paciente")]
+        [Authorize(Roles = "Paciente")]
         public async Task<IActionResult> GetDataHora(int idPaciente, int idMedico)
         {
             var dataHoras =  await _dataHoraAgendamentoService.BuscarDataHoraDisponiveis(idPaciente, idMedico);

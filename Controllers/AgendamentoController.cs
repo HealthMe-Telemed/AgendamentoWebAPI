@@ -7,6 +7,7 @@ using AgendamentoWebAPI.Models;
 using AgendamentoWebAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace AgendamentoWebAPI.Controllers
@@ -27,18 +28,33 @@ namespace AgendamentoWebAPI.Controllers
 
         [HttpGet]
         [Route("paciente/{idPaciente}")]
-        //[Authorize(Roles = "Paciente")]
-        public async Task<IActionResult> GetAgendamentos(int idPaciente)
+        [Authorize(Roles = "Paciente")]
+        public async Task<IActionResult> GetAgendamentosPaciente(int idPaciente)
         {
 
-            var agendamentos = await _agendamentoService.EncontrarAgendamentos(idPaciente);
+            var agendamentos = await _agendamentoService.EncontrarAgendamentosPaciente(idPaciente);
 
             if (agendamentos.Count == 0) return BadRequest("Não há agendamentos a serem listados");
 
             return Ok(agendamentos);
         }
 
+        [HttpGet]
+        [Route("medico/{idMedico}")]
+        [Authorize(Roles = "Medico")]
+        public async Task<IActionResult> GetAgendamentosMedico(int idMedico)
+        {
+
+            var agendamentos = await _agendamentoService.EncontrarAgendamentosMedico(idMedico);
+
+            if (agendamentos.Count == 0) return BadRequest("Não há agendamentos a serem listados");
+
+            return Ok(agendamentos);
+        }
+
+
         [HttpPost]
+        [Authorize(Roles = "Paciente")]
         public async Task<IActionResult> PostAgendamento([FromBody] AgendamentoForm agendamentoForm){
             var agendamentoRealizado = await _agendamentoService.CadastrarAgendamento(agendamentoForm);
             
@@ -48,7 +64,7 @@ namespace AgendamentoWebAPI.Controllers
 
         [HttpDelete]
         [Route("{idAgendamento}")]
-        //[Authorize(Roles = "Paciente")]
+        [Authorize(Roles = "Paciente,Medico")]
         public async Task<IActionResult> CancelarAgendamento(int idAgendamento)
         {
 

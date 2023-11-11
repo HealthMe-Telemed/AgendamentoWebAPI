@@ -28,9 +28,15 @@ namespace AgendamentoWebAPI.Services
             return agendamentoCancelado;
         }
 
-        public async Task<List<Agendamento>> EncontrarAgendamentos(int idPaciente)
+        public async Task<List<Agendamento>> EncontrarAgendamentosMedico(int idMedico)
         {
-            var agendamentos = await _agendamentoDatabase.EncontrarAgendamentos(idPaciente);
+            var agendamentos = await _agendamentoDatabase.EncontrarAgendamentosMedico(idMedico);
+            return agendamentos;
+        }
+
+        public async Task<List<Agendamento>> EncontrarAgendamentosPaciente(int idPaciente)
+        {
+            var agendamentos = await _agendamentoDatabase.EncontrarAgendamentosPaciente(idPaciente);
             return agendamentos;
         }
     }
