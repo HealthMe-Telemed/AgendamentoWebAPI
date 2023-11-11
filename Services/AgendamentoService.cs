@@ -10,16 +10,15 @@ namespace AgendamentoWebAPI.Services
     
     public class AgendamentoService : IAgendamentoService
     {
-        //private readonly ITipoConsultaDatabase _tipoConsultaDatabase;
-        public AgendamentoService()
+        private readonly IAgendamentoDatabase _agendamentoDatabase;
+        public AgendamentoService(IAgendamentoDatabase agendamentoDatabase)
         {
-            //_tipoConsultaDatabase = tipoConsultaDatabase;
+            _agendamentoDatabase = agendamentoDatabase;
         }
         public async Task<List<Agendamento>> EncontrarAgendamentos(int idPaciente)
         {
-            //var tiposConsulta = await _tipoConsultaDatabase.EncontrarTiposConsulta(idMedico);
-            //return tiposConsulta;
-            return new List<Agendamento>();
+            var agendamentos = await _agendamentoDatabase.EncontrarAgendamentos(idPaciente);
+            return agendamentos;
         }
     }
 }

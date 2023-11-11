@@ -30,9 +30,8 @@ namespace AgendamentoWebAPI.Controllers
         //[Authorize(Roles = "Paciente")]
         public async Task<IActionResult> GetAgendamentos(int idPaciente)
         {
-            List<Agendamento> agendamentos = new List<Agendamento>();
 
-            agendamentos = await _agendamentoService.EncontrarAgendamentos(idPaciente);
+            var agendamentos = await _agendamentoService.EncontrarAgendamentos(idPaciente);
 
             if (agendamentos.Count == 0) return BadRequest("Não há agendamentos a serem listados");
 
