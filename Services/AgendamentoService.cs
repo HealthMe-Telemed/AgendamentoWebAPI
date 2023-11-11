@@ -22,6 +22,12 @@ namespace AgendamentoWebAPI.Services
             return agendamentoRealizado;
         }
 
+        public async Task<bool> CancelarAgendamento(int idAgendamento)
+        {
+            var agendamentoCancelado = await _agendamentoDatabase.CancelarAgendamento(idAgendamento);
+            return agendamentoCancelado;
+        }
+
         public async Task<List<Agendamento>> EncontrarAgendamentos(int idPaciente)
         {
             var agendamentos = await _agendamentoDatabase.EncontrarAgendamentos(idPaciente);

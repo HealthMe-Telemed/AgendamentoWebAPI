@@ -51,6 +51,32 @@ namespace AgendamentoWebAPI.Repository
             }
         }
 
+        public async Task<bool> CancelarAgendamento(int idAgendamento)
+        {
+            try
+            {
+                _logger.LogInformation($"Tentando cadastrar o agendamento no sistema...");
+                
+                await _database.ExecuteAsync(QueryExtensions.CancelarAgendamento(),
+                new {  
+                    agendamentoId = idAgendamento
+                });
+
+                return true;
+            }
+
+            catch(MySqlException mysqlEx){
+                _logger.LogError($"Não foi possível cancelar o agendamento: {mysqlEx.ErrorCode} {mysqlEx.Message}");
+                return false;
+            }
+
+            catch(Exception ex)
+            {
+                _logger.LogError($"Ocorreu um erro inesperado!! Segue o erro: {ex.Message}");
+                throw new Exception("Ocorreu um erro inesperado!!");
+            }
+        }
+
         public async Task<List<Agendamento>> EncontrarAgendamentos(int idPaciente)
         {
             try

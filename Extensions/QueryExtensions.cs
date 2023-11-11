@@ -46,6 +46,9 @@ namespace AgendamentoWebAPI.Extensions
         public static string InserirAgendamento() => @"
         INSERT INTO agendamento(medico_id, paciente_id, especialidade_id, tipo_consulta_id, status_id, data_agendada)
         VALUES(@medicoId, @pacienteId, @especialidadeId, @tipoConsultaId, @statusId, @dataAgendada);";
+
+        public static string CancelarAgendamento() => @"
+        UPDATE agendamento SET status_id = 3 WHERE status_id = 1 AND id = @agendamentoId;";
     }
 
 }

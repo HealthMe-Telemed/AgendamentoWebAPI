@@ -45,5 +45,18 @@ namespace AgendamentoWebAPI.Controllers
             if(!agendamentoRealizado) return BadRequest("Não foi possível cadastrar o agendamento");
             return Ok("Agendamento realizado com sucesso!");
         }
+
+        [HttpDelete]
+        [Route("{idAgendamento}")]
+        //[Authorize(Roles = "Paciente")]
+        public async Task<IActionResult> CancelarAgendamento(int idAgendamento)
+        {
+
+            var agendamentoCancelado = await _agendamentoService.CancelarAgendamento(idAgendamento);
+
+            if (!agendamentoCancelado) return BadRequest("Não foi possível cancelar o agendamento");
+
+            return Ok("Agendamento cancelado com sucesso");
+        }
     }
 }
