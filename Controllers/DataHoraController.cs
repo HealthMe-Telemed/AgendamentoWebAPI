@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AgendamentoWebAPI.Controllers
 {
     [ApiController]
-    [Route("agendamento/[controller]")]
+    [Route("agendamentos/[controller]")]
     public class DataHoraController : ControllerBase
     {
         private readonly ILogger<DataHoraController> _logger;

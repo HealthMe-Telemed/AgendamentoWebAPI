@@ -54,6 +54,8 @@ services.AddScoped<IMedicoService, MedicoService>();
 services.AddScoped<IMedicoDatabase, MedicoDatabase>();
 services.AddScoped<IDataHoraAgendamentoDatabase, DataHoraAgendamentoDatabase>();
 services.AddScoped<IDataHoraAgendamentoService, DataHoraAgendamentoService>();
+services.AddScoped<ITipoConsultaService, TipoConsultaService>();
+services.AddScoped<ITipoConsultaDatabase, TipoConsultaDatabase>();
 
 var key = Encoding.ASCII.GetBytes(Settings.Secret);
     services.AddAuthentication(x =>
