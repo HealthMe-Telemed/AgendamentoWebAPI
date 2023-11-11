@@ -9,6 +9,7 @@ namespace AgendamentoWebAPI.Services
     public interface IAgendamentoService
     {
         public Task<List<Agendamento>> EncontrarAgendamentos(int idPaciente); 
+        public Task<bool> CadastrarAgendamento(AgendamentoForm agendamentoForm);
     }
 
 }

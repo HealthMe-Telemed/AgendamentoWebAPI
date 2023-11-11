@@ -42,6 +42,10 @@ namespace AgendamentoWebAPI.Extensions
             INNER JOIN tipo_consulta TC ON TC.id = A.tipo_consulta_id
             INNER JOIN status S ON S.id = A.status_id
             WHERE VP.IdPaciente = @idPaciente;";
+
+        public static string InserirAgendamento() => @"
+        INSERT INTO agendamento(medico_id, paciente_id, especialidade_id, tipo_consulta_id, status_id, data_agendada)
+        VALUES(@medicoId, @pacienteId, @especialidadeId, @tipoConsultaId, @statusId, @dataAgendada);";
     }
 
 }

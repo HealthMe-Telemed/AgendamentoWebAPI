@@ -15,6 +15,13 @@ namespace AgendamentoWebAPI.Services
         {
             _agendamentoDatabase = agendamentoDatabase;
         }
+
+        public async Task<bool> CadastrarAgendamento(AgendamentoForm agendamentoForm)
+        {
+            var agendamentoRealizado = await _agendamentoDatabase.CadastrarAgendamento(agendamentoForm);
+            return agendamentoRealizado;
+        }
+
         public async Task<List<Agendamento>> EncontrarAgendamentos(int idPaciente)
         {
             var agendamentos = await _agendamentoDatabase.EncontrarAgendamentos(idPaciente);
