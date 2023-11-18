@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AgendamentoWebAPI.Repository;
+using MedicoEspecialidadeWebAPI.Models;
 
 namespace AgendamentoWebAPI.Services
 {
@@ -14,7 +15,7 @@ namespace AgendamentoWebAPI.Services
             _dataHoraDatabase = dataHoraDatabase;
         }
         
-        public async Task<List<DateTime>> BuscarDataHoraDisponiveis(int idPaciente, int idMedico)
+        public async Task<List<DataHoraAgendamento>> BuscarDataHoraDisponiveis(int idPaciente, int idMedico)
         {
             var amanha = DateTime.Now.Date.AddDays(1);
             

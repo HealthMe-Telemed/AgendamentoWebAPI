@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
+using MedicoEspecialidadeWebAPI.Models;
 using MySqlConnector;
 
 namespace AgendamentoWebAPI.Repository
@@ -18,7 +19,7 @@ namespace AgendamentoWebAPI.Repository
             _database = database;
             _logger = logger;
         }
-        public async Task<List<DateTime>> BuscarDataHoraDisponiveis(int idPaciente, int idMedico, DateTime data)
+        public async Task<List<DataHoraAgendamento>> BuscarDataHoraDisponiveis(int idPaciente, int idMedico, DateTime data)
         {
             try
             {
@@ -27,7 +28,12 @@ namespace AgendamentoWebAPI.Repository
                 var horarios = await _database.QueryAsync<DateTime>("pVerificarHorariosDisponiveis",
                 new { PacienteId = idPaciente, MedicoId = idMedico, DataInicial = data},
                 commandType: CommandType.StoredProcedure);
-                return horarios.ToList();
+                var dataHora = new List<DataHoraAgendamento>();
+                foreach (var horario in horarios)
+                {
+                    dataHora.Add(new DataHoraAgendamento{ DataHora = horario});
+                }
+                return dataHora;
             }
 
             catch(Exception ex)
