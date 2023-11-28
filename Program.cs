@@ -47,7 +47,7 @@ services.AddSwaggerGen(c =>
             });
 services.AddCors();
 
-services.AddTransient(x => new MySqlConnection(builder.Configuration.GetConnectionString("MySql")));
+services.AddTransient(x => new MySqlConnection(builder.Configuration.GetConnectionString("AWS")));
 services.AddScoped<IEspecialidadesService, EspecialidadesService>();
 services.AddScoped<IEspecialidadesDatabase, EspecialidadesDatabase>();
 services.AddScoped<IMedicoService, MedicoService>();
