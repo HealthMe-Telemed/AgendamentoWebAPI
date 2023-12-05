@@ -34,7 +34,7 @@ namespace AgendamentoWebAPI.Controllers
 
             var agendamentos = await _agendamentoService.EncontrarAgendamentosPaciente(idPaciente);
 
-            if (agendamentos.Count == 0) return BadRequest("Não há agendamentos a serem listados");
+            if (agendamentos.Count == 0) return NotFound("Não há agendamentos a serem listados");
 
             return Ok(agendamentos);
         }
@@ -47,7 +47,7 @@ namespace AgendamentoWebAPI.Controllers
 
             var agendamentos = await _agendamentoService.EncontrarAgendamentosMedico(idMedico);
 
-            if (agendamentos.Count == 0) return BadRequest("Não há agendamentos a serem listados");
+            if (agendamentos.Count == 0) return NotFound("Não há agendamentos a serem listados");
 
             return Ok(agendamentos);
         }
