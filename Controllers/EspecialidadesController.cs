@@ -20,7 +20,6 @@ public class EspecialidadesController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Roles = "Paciente")]
     public async Task<IActionResult> GetEspecialidades(int idMedico)
     {
         List<Especialidade> especialidades = new List<Especialidade>();

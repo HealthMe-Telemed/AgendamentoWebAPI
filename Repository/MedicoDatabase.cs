@@ -20,14 +20,14 @@ namespace AgendamentoWebAPI.Repository
             _logger = logger;
         }
         
-        public async Task<List<Medico>> EncontrarMedicoPorEspecialidade(int idEspecialidade)
+        public async Task<List<Medico>> EncontrarMedicoPorEspecialidade(int idEspecialidade, int idMedico)
         {
             try
             {
                 _logger.LogInformation($"Buscando medicos para a especialidade com id {idEspecialidade}...");
                 
                 var medicos = await _database.QueryAsync<Medico>(QueryExtensions.QueryConsultaMedicoPorId(),
-                new { idEspecialidade });
+                new { idEspecialidade, idMedico });
                 return medicos.ToList();
             }
 
@@ -38,13 +38,14 @@ namespace AgendamentoWebAPI.Repository
             }
         }
 
-        public async Task<List<Medico>> EncontrarMedicos()
+        public async Task<List<Medico>> EncontrarMedicos(int idMedico)
         {
             try
             {
                 _logger.LogInformation($"Buscando medicos...");
                 
-                var medicos = await _database.QueryAsync<Medico>(QueryExtensions.QueryConsultaMedico());
+                var medicos = await _database.QueryAsync<Medico>(QueryExtensions.QueryConsultaMedico(), 
+                new { idMedico });
                 return medicos.ToList();
             }
 

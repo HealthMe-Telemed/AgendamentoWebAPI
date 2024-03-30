@@ -15,15 +15,15 @@ namespace AgendamentoWebAPI.Services
         {
             _medicoDatabase = medicoDatabase;
         }
-        public async Task<List<Medico>> EncontrarMedicos()
+        public async Task<List<Medico>> EncontrarMedicos(int idMedico)
         {
-            var medicos = await _medicoDatabase.EncontrarMedicos();
+            var medicos = await _medicoDatabase.EncontrarMedicos(idMedico);
             return medicos;
         }
 
-        public async Task<List<Medico>> EncontrarMedicosPorEspecialidade(int idEspecialidade)
+        public async Task<List<Medico>> EncontrarMedicosPorEspecialidade(int idEspecialidade, int idMedico)
         {
-            var medicos = await _medicoDatabase.EncontrarMedicoPorEspecialidade(idEspecialidade);
+            var medicos = await _medicoDatabase.EncontrarMedicoPorEspecialidade(idEspecialidade, idMedico);
             return medicos;
         }
     }

@@ -8,7 +8,7 @@ namespace AgendamentoWebAPI.Repository
 {
     public interface IMedicoDatabase
     {
-        public Task<List<Medico>> EncontrarMedicoPorEspecialidade(int idEspecialidade);
-        public Task<List<Medico>> EncontrarMedicos();
+        public Task<List<Medico>> EncontrarMedicoPorEspecialidade(int idEspecialidade, int idMedico);
+        public Task<List<Medico>> EncontrarMedicos(int idMedico);
     }
 }

@@ -20,13 +20,13 @@ namespace AgendamentoWebAPI.Extensions
             WHERE AE.medico_id = @idMedico;";
 
         public static string QueryConsultaMedico() => @"
-        SELECT * FROM v_medico;";
+        SELECT * FROM v_medico where v_medico.Id != @idMedico";
 
         public static string QueryConsultaMedicoPorId() => @"
         SELECT * FROM v_medico VM
             INNER JOIN alocacao_especialidade AE
             ON VM.Id = AE.medico_id
-            WHERE AE.espec_id = @idEspecialidade;";
+            WHERE AE.espec_id = @idEspecialidade AND VM.Id != @idMedico;";
             
         public static string QueryConsultaTipoConsulta() => @"
         SELECT TC.id AS 'Id', TC.descricao AS 'Descricao' FROM tipo_consulta TC

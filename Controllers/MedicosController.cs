@@ -27,17 +27,17 @@ namespace AgendamentoWebAPI.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Paciente")]
-        public async Task<IActionResult> GetMedicos(int idEspecialidade)
+        public async Task<IActionResult> GetMedicos(int idEspecialidade, int idMedico)
         {
             List<Medico> medicos = new List<Medico>();
 
             if (idEspecialidade == 0)
             {
-                medicos = await _medicoService.EncontrarMedicos();
+                medicos = await _medicoService.EncontrarMedicos(idMedico);
             }
             else
             {
-                medicos = await _medicoService.EncontrarMedicosPorEspecialidade(idEspecialidade);
+                medicos = await _medicoService.EncontrarMedicosPorEspecialidade(idEspecialidade, idMedico);
             }
 
             if (medicos.Count == 0) return NoContent();

@@ -8,8 +8,8 @@ namespace AgendamentoWebAPI.Services
 {
     public interface IMedicoService
     {
-        public Task<List<Medico>> EncontrarMedicos();
-        public Task<List<Medico>> EncontrarMedicosPorEspecialidade(int idEspecialidade); 
+        public Task<List<Medico>> EncontrarMedicos(int idMedico);
+        public Task<List<Medico>> EncontrarMedicosPorEspecialidade(int idEspecialidade, int idMedico); 
     }
 
 }
