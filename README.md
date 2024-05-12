@@ -6,7 +6,7 @@ Esta API tem como objetivo gerenciar agendamentos, desde fornecer as opções di
 
 .NET Core 6.0 instalado.
 
-Para a instalação do .NET 6.0, deve-se instalá-lo pelo seguinte link [text](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+Para a instalação do .NET 6.0, deve-se instalá-lo pelo seguinte link https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 
 ## Execução da aplicação
 
