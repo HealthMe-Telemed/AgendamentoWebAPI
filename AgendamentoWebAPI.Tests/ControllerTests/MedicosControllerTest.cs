@@ -15,24 +15,24 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
     public class MedicosControllerTest
     {
         [Fact]
-        public async void BuscarMedicosSemFiltroSucesso()
+        public async void BuscarMedicosSemFiltroOk()
         {
             // Arrange
             
             var loggerMock = new Mock<ILogger<MedicosController>>();
             var medicoServiceMock = new Mock<IMedicoService>();
-            int idEspecialidade = 0;
-            int idMedico = 3;
+            int idEspecialidadeMock = 0;
+            int idMedicoMock = 3;
             List<Medico> medicosMock = new List<Medico>(){
                 new Medico() {Id = 1, Nome = "Medico1", CRM = "11111111", CRP = "1111111"},
                 new Medico() {Id = 2, Nome = "Medico2", CRM = "22222222", CRP = "2222222"}
             };
-            medicoServiceMock.Setup(s => s.EncontrarMedicos(idMedico)).ReturnsAsync(medicosMock);
+            medicoServiceMock.Setup(s => s.EncontrarMedicos(idMedicoMock)).ReturnsAsync(medicosMock);
             var controller = new MedicosController(loggerMock.Object, medicoServiceMock.Object);
             
             // Act
 
-            var result = await controller.GetMedicos(idEspecialidade, idMedico);
+            var result = await controller.GetMedicos(idEspecialidadeMock, idMedicoMock);
 
             // Assert
 
@@ -40,24 +40,24 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void BuscarMedicosComFiltroSucesso()
+        public async void BuscarMedicosComFiltroOK()
         {
             // Arrange
             
             var loggerMock = new Mock<ILogger<MedicosController>>();
             var medicoServiceMock = new Mock<IMedicoService>();
-            int idEspecialidade = 1;
-            int idMedico = 3;
+            int idEspecialidadeMock = 1;
+            int idMedicoMock = 3;
             List<Medico> medicosMock = new List<Medico>(){
                 new Medico() {Id = 1, Nome = "Medico1", CRM = "11111111", CRP = "1111111"},
                 new Medico() {Id = 2, Nome = "Medico2", CRM = "22222222", CRP = "2222222"}
             };
-            medicoServiceMock.Setup(s => s.EncontrarMedicosPorEspecialidade(idEspecialidade, idMedico)).ReturnsAsync(medicosMock);
+            medicoServiceMock.Setup(s => s.EncontrarMedicosPorEspecialidade(idEspecialidadeMock, idMedicoMock)).ReturnsAsync(medicosMock);
             var controller = new MedicosController(loggerMock.Object, medicoServiceMock.Object);
             
             // Act
 
-            var result = await controller.GetMedicos(idEspecialidade, idMedico);
+            var result = await controller.GetMedicos(idEspecialidadeMock, idMedicoMock);
 
             // Assert
 
@@ -65,21 +65,21 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void BuscarMedicosSemFiltroListaVazia()
+        public async void BuscarMedicosSemFiltroNoContent()
         {
             // Arrange
             
             var loggerMock = new Mock<ILogger<MedicosController>>();
             var medicoServiceMock = new Mock<IMedicoService>();
-            int idEspecialidade = 0;
-            int idMedico = 3;
+            int idEspecialidadeMock = 0;
+            int idMedicoMock = 3;
             List<Medico> medicosMock = new List<Medico>();
-            medicoServiceMock.Setup(s => s.EncontrarMedicos(idMedico)).ReturnsAsync(medicosMock);
+            medicoServiceMock.Setup(s => s.EncontrarMedicos(idMedicoMock)).ReturnsAsync(medicosMock);
             var controller = new MedicosController(loggerMock.Object, medicoServiceMock.Object);
             
             // Act
 
-            var result = await controller.GetMedicos(idEspecialidade, idMedico);
+            var result = await controller.GetMedicos(idEspecialidadeMock, idMedicoMock);
 
             // Assert
 
@@ -87,21 +87,21 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void BuscarMedicosComFiltroListaVazia()
+        public async void BuscarMedicosComFiltroNoContent()
         {
             // Arrange
             
             var loggerMock = new Mock<ILogger<MedicosController>>();
             var medicoServiceMock = new Mock<IMedicoService>();
-            int idEspecialidade = 1;
-            int idMedico = 3;
+            int idEspecialidadeMock = 1;
+            int idMedicoMock = 3;
             List<Medico> medicosMock = new List<Medico>();
-            medicoServiceMock.Setup(s => s.EncontrarMedicosPorEspecialidade(idEspecialidade, idMedico)).ReturnsAsync(medicosMock);
+            medicoServiceMock.Setup(s => s.EncontrarMedicosPorEspecialidade(idEspecialidadeMock, idMedicoMock)).ReturnsAsync(medicosMock);
             var controller = new MedicosController(loggerMock.Object, medicoServiceMock.Object);
             
             // Act
 
-            var result = await controller.GetMedicos(idEspecialidade, idMedico);
+            var result = await controller.GetMedicos(idEspecialidadeMock, idMedicoMock);
 
             // Assert
 

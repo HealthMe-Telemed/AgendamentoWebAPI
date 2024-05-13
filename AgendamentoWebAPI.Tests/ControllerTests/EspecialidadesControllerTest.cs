@@ -15,7 +15,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
     public class EspecialidadesControllerTest
     {
         [Fact]
-        public async void BuscarEspecialidadesSemFiltroSucesso()
+        public async void BuscarEspecialidadesSemFiltroOk()
         {
             // Arrange
             
@@ -39,7 +39,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void BuscarEspecialidadesComFiltroSucesso()
+        public async void BuscarEspecialidadesComFiltroOk()
         {
             // Arrange
             
@@ -63,7 +63,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void BuscarEspecialidadesSemFiltroListaVazia()
+        public async void BuscarEspecialidadesSemFiltroNoContent()
         {
             // Arrange
             
@@ -84,7 +84,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void BuscarEspecialidadesComFiltroListaVazia()
+        public async void BuscarEspecialidadesComFiltroNoContent()
         {
             // Arrange
             

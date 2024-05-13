@@ -15,7 +15,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
     public class DataHoraControllerTest
     {
         [Fact]
-        public async void BuscarDataHoraLista()
+        public async void BuscarDataHoraListaOk()
         {
             // Arrange
 
@@ -38,7 +38,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void BuscarDataHoraListaVazia()
+        public async void BuscarDataHoraNoContent()
         {
             // Arrange
 

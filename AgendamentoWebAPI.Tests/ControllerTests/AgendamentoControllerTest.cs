@@ -16,7 +16,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
     public class AgendamentoControllerTest
     {
         [Fact]
-        public async void ListarAgendamentosPacienteEncontrado()
+        public async void ListarAgendamentosPacienteOk()
         {
             //Arrange
             
@@ -37,7 +37,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void ListarAgendamentosPacienteNaoEncontrado()
+        public async void ListarAgendamentosPacienteNotFound()
         {
             //Arrange
             
@@ -58,7 +58,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
         
         [Fact]
-        public async void ListarAgendamentosMedicoEncontrado()
+        public async void ListarAgendamentosMedicoOk()
         {
             //Arrange
             
@@ -79,7 +79,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void ListarAgendamentosMedicoNaoEncontrado()
+        public async void ListarAgendamentosMedicoNotFound()
         {
             //Arrange
             
@@ -100,7 +100,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void CadastrarAgendamentoSuccesso()
+        public async void CadastrarAgendamentoOk()
         {
             //Arrange
             
@@ -127,7 +127,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void CadastrarAgendamentoErro()
+        public async void CadastrarAgendamentoBadResquest()
         {
             //Arrange
             
@@ -154,7 +154,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void CancelarAgendamentoSucesso()
+        public async void CancelarAgendamentoOk()
         {
             //Arrange
             
@@ -174,7 +174,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
-        public async void CancelarAgendamentoErro()
+        public async void CancelarAgendamentoBadRequest()
         {
             //Arrange
             
