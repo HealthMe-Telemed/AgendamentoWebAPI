@@ -100,6 +100,59 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
         }
 
         [Fact]
+        public async void BuscarAgendamentoOk()
+        {
+            //Arrange
+            
+            var loggerMock = new Mock<ILogger<AgendamentoController>>();
+            var agendamentoServiceMock = new Mock<IAgendamentoService>();
+            var idAgendamentoMock = 1;
+            var agendamentoMock = new Agendamento() {
+                Id = 1,
+                TipoConsulta = "Telemedicina",
+                TipoConsultaId = 1,
+                MedicoId = 1,
+                NomeMedico = "Medico1",
+                PacienteId = 3,
+                NomePaciente = "Paciente3",
+                StatusConsultaId = 1,
+                StatusConsulta = "Agendado"
+
+            };
+            agendamentoServiceMock.Setup(s => s.EncontrarAgendamentoPorId(idAgendamentoMock)).ReturnsAsync(agendamentoMock);
+            var controller = new AgendamentoController(loggerMock.Object, agendamentoServiceMock.Object);
+
+            //Act
+
+            var result = await controller.GetAgendamento(idAgendamentoMock);
+
+            //Assert
+
+            Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public async void BuscarAgendamentoNotFound()
+        {
+             //Arrange
+            
+            var loggerMock = new Mock<ILogger<AgendamentoController>>();
+            var agendamentoServiceMock = new Mock<IAgendamentoService>();
+            var idAgendamentoMock = 1;
+            
+            agendamentoServiceMock.Setup(s => s.EncontrarAgendamentoPorId(idAgendamentoMock)).Returns(Task.FromResult<Agendamento>(null));
+            var controller = new AgendamentoController(loggerMock.Object, agendamentoServiceMock.Object);
+
+            //Act
+
+            var result = await controller.GetAgendamento(idAgendamentoMock);
+
+            //Assert
+
+            Assert.IsType<NotFoundObjectResult>(result);
+        }
+
+        [Fact]
         public async void CadastrarAgendamentoOk()
         {
             //Arrange
@@ -147,6 +200,62 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
             //Act
 
             var result = await controller.PostAgendamento(agendamentoFormMock);
+
+            //Assert
+
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public async void AtualizarAgendamentoOk()
+        {
+            //Arrange
+            
+            var loggerMock = new Mock<ILogger<AgendamentoController>>();
+            var agendamentoServiceMock = new Mock<IAgendamentoService>();
+            var idAgendamentoMock = 1;
+            var agendamentoFormMock = new AgendamentoForm() {
+                IdPaciente = 1,
+                IdMedico = 1,
+                IdEspecialidade = 1,
+                IdStatusConsulta = 1,
+                IdTipoConsulta = 1,
+                DataAgendada = new DateTime(2024, 5, 20)
+            };
+            agendamentoServiceMock.Setup(s => s.AtualizarAgendamento(idAgendamentoMock, agendamentoFormMock)).ReturnsAsync(true);
+            var controller = new AgendamentoController(loggerMock.Object, agendamentoServiceMock.Object);
+
+            //Act
+
+            var result = await controller.PatchAgendamento(idAgendamentoMock, agendamentoFormMock);
+
+            //Assert
+
+            Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public async void AtualizarAgendamentoBadResquest()
+        {
+            //Arrange
+            
+            var loggerMock = new Mock<ILogger<AgendamentoController>>();
+            var agendamentoServiceMock = new Mock<IAgendamentoService>();
+            var idAgendamentoMock = 1;
+            var agendamentoFormMock = new AgendamentoForm() {
+                IdPaciente = 1,
+                IdMedico = 1,
+                IdEspecialidade = 1,
+                IdStatusConsulta = 1,
+                IdTipoConsulta = 1,
+                DataAgendada = new DateTime(2024, 5, 20)
+            };
+            agendamentoServiceMock.Setup(s => s.AtualizarAgendamento(idAgendamentoMock, agendamentoFormMock)).ReturnsAsync(false);
+            var controller = new AgendamentoController(loggerMock.Object, agendamentoServiceMock.Object);
+
+            //Act
+
+            var result = await controller.PatchAgendamento(idAgendamentoMock, agendamentoFormMock);
 
             //Assert
 

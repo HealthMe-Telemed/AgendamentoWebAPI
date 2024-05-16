@@ -71,6 +71,62 @@ namespace AgendamentoWebAPI.Tests.ServiceTests
         }
 
         [Fact]
+        public async void AtualizarAgendamentoSuccesso()
+        {
+            //Arrange
+            
+            var agendamentoDatabaseMock = new Mock<IAgendamentoDatabase>();
+            var agendamentoIdMock = 1;
+            var agendamentoFormMock = new AgendamentoForm() {
+                IdPaciente = 1,
+                IdMedico = 1,
+                IdEspecialidade = 1,
+                IdStatusConsulta = 1,
+                IdTipoConsulta = 1,
+                DataAgendada = new DateTime(2024, 5, 23)
+            };
+            agendamentoDatabaseMock.Setup(s => s.AtualizarAgendamento(agendamentoIdMock, agendamentoFormMock)).ReturnsAsync(true);
+            var service = new AgendamentoService(agendamentoDatabaseMock.Object);
+
+            //Act
+
+            var result = await service.AtualizarAgendamento(agendamentoIdMock, agendamentoFormMock);
+
+            //Assert
+
+            Assert.IsType<bool>(result);
+            Assert.True(result);
+        }
+
+        [Fact]
+        public async void AtualizarAgendamentoErro()
+        {
+            //Arrange
+            
+            var agendamentoDatabaseMock = new Mock<IAgendamentoDatabase>();
+            var agendamentoIdMock = 1;
+            var agendamentoFormMock = new AgendamentoForm() {
+                IdPaciente = 1,
+                IdMedico = 1,
+                IdEspecialidade = 1,
+                IdStatusConsulta = 1,
+                IdTipoConsulta = 1,
+                DataAgendada = new DateTime(2024, 5, 20)
+            };
+            agendamentoDatabaseMock.Setup(s => s.AtualizarAgendamento(agendamentoIdMock, agendamentoFormMock)).ReturnsAsync(false);
+            var service = new AgendamentoService(agendamentoDatabaseMock.Object);
+
+            //Act
+
+            var result = await service.AtualizarAgendamento(agendamentoIdMock, agendamentoFormMock);
+
+            //Assert
+
+            Assert.IsType<bool>(result);
+            Assert.False(result);
+        }
+
+        [Fact]
         public async void CancelarAgendamentoSucesso()
         {
             //Arrange
@@ -108,6 +164,57 @@ namespace AgendamentoWebAPI.Tests.ServiceTests
 
             Assert.IsType<bool>(result);
             Assert.False(result);
+        }
+
+        [Fact]
+        public async void BuscarAgendamentoPorIdEncontrado()
+        {
+            //Arrange
+            
+            var agendamentoDatabaseMock = new Mock<IAgendamentoDatabase>();
+            var idAgendamentoMock = 1;
+            var agendamentoMock = new Agendamento() {
+                Id = 1,
+                TipoConsulta = "Telemedicina",
+                TipoConsultaId = 1,
+                MedicoId = 1,
+                NomeMedico = "Medico1",
+                PacienteId = 3,
+                NomePaciente = "Paciente3",
+                StatusConsultaId = 1,
+                StatusConsulta = "Agendado"
+
+            };
+            agendamentoDatabaseMock.Setup(s => s.EncontrarAgendamentoId(idAgendamentoMock)).ReturnsAsync(agendamentoMock);
+            var service = new AgendamentoService(agendamentoDatabaseMock.Object);
+
+            //Act
+
+            var result = await service.EncontrarAgendamentoPorId(idAgendamentoMock);
+
+            //Assert
+
+            Assert.IsType<Agendamento>(result);
+            Assert.True(result.Id == idAgendamentoMock);
+        }
+
+        [Fact]
+        public async void BuscarAgendamentoPorIdNaoEncontrado()
+        {
+            //Arrange
+            
+            var agendamentoDatabaseMock = new Mock<IAgendamentoDatabase>();
+            var idAgendamentoMock = 1;
+            agendamentoDatabaseMock.Setup(s => s.EncontrarAgendamentoId(idAgendamentoMock)).Returns(Task.FromResult<Agendamento>(null));
+            var service = new AgendamentoService(agendamentoDatabaseMock.Object);
+
+            //Act
+
+            var result = await service.EncontrarAgendamentoPorId(idAgendamentoMock);
+
+            //Assert
+
+            Assert.Null(result);
         }
         
         [Fact]

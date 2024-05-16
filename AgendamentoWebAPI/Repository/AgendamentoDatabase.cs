@@ -113,5 +113,49 @@ namespace AgendamentoWebAPI.Repository
             }
         }
 
+        public async Task<Agendamento> EncontrarAgendamentoId(int idAgendamento)
+        {
+            try
+            {
+                _logger.LogInformation($"Buscando o agendamento com id {idAgendamento}...");
+                
+                var agendamento = await _database.QueryFirstOrDefaultAsync<Agendamento>(QueryExtensions.BuscarAgendamentosPorId(),
+                new { idAgendamento });
+                return agendamento;
+            }
+
+            catch(Exception ex)
+            {
+                _logger.LogError($"Ocorreu um erro inesperado!! Segue o erro: {ex.Message}");
+                throw new Exception("Ocorreu um erro inesperado!!");
+            }  
+        }
+
+        public async Task<bool> AtualizarAgendamento(int idAgendamento, AgendamentoForm agendamentoForm)
+        {
+            try
+            {
+                _logger.LogInformation($"Tentando atualizar o agendamento no sistema...");
+                
+                await _database.ExecuteAsync(QueryExtensions.AtualizarAgendamento(),
+                new {  
+                    idAgendamento,
+                    dataAgendada = agendamentoForm.DataAgendada
+                });
+
+                return true;
+            }
+
+            catch(MySqlException mysqlEx){
+                _logger.LogError($"Não foi possível atualizar o agendamento: {mysqlEx.ErrorCode} {mysqlEx.Message}");
+                return false;
+            }
+
+            catch(Exception ex)
+            {
+                _logger.LogError($"Ocorreu um erro inesperado!! Segue o erro: {ex.Message}");
+                throw new Exception("Ocorreu um erro inesperado!!");
+            }
+        }
     }
 }

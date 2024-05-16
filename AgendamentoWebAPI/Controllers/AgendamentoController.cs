@@ -74,5 +74,23 @@ namespace AgendamentoWebAPI.Controllers
 
             return Ok("Agendamento cancelado com sucesso");
         }
+
+        [HttpGet]
+        [Route("{idAgendamento}")]
+        public async Task<IActionResult> GetAgendamento (int idAgendamento){
+            var agendamento = await _agendamentoService.EncontrarAgendamentoPorId(idAgendamento);
+            
+            if (agendamento is null) return NotFound("Agendamento não encontrado");
+
+            return Ok(agendamento);
+        }
+
+        [HttpPatch]
+        [Route("{idAgendamento}")]
+        public async Task<IActionResult> PatchAgendamento (int idAgendamento, [FromBody] AgendamentoForm agendamentoForm){
+            var agendamentoAtualizado = await _agendamentoService.AtualizarAgendamento(idAgendamento, agendamentoForm);
+            if (!agendamentoAtualizado) return BadRequest("Não é possível atualizar o agendamento");
+            return Ok("Agendamento atualizado!!");
+        }
     }
 }
