@@ -12,7 +12,7 @@ namespace AgendamentoWebAPI.Services
         public Task<List<Agendamento>> EncontrarAgendamentosMedico(int idMedico); 
         public Task<Agendamento> EncontrarAgendamentoPorId(int idAgendamento);
         public Task<bool> AtualizarAgendamento(int idAgendamento, AgendamentoForm agendamentoForm);
-        public Task<bool> CadastrarAgendamento(AgendamentoForm agendamentoForm);
+        public Task<AgendamentoCriado> CadastrarAgendamento(AgendamentoForm agendamentoForm);
         public Task<bool> CancelarAgendamento(int idAgendamento);
     }
 

@@ -167,7 +167,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
                 IdTipoConsulta = 1,
                 DataAgendada = new DateTime(2024, 5, 20)
             };
-            agendamentoServiceMock.Setup(s => s.CadastrarAgendamento(agendamentoFormMock)).ReturnsAsync(true);
+            agendamentoServiceMock.Setup(s => s.CadastrarAgendamento(agendamentoFormMock)).ReturnsAsync(new AgendamentoCriado());
             var controller = new AgendamentoController(loggerMock.Object, agendamentoServiceMock.Object);
 
             //Act
@@ -194,7 +194,7 @@ namespace AgendamentoWebAPI.Tests.ControllerTests
                 IdTipoConsulta = 1,
                 DataAgendada = new DateTime(2024, 5, 20)
             };
-            agendamentoServiceMock.Setup(s => s.CadastrarAgendamento(agendamentoFormMock)).ReturnsAsync(false);
+            //agendamentoServiceMock.Setup(s => s.CadastrarAgendamento(agendamentoFormMock)).ReturnsAsync(false);
             var controller = new AgendamentoController(loggerMock.Object, agendamentoServiceMock.Object);
 
             //Act

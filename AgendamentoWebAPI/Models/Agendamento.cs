@@ -10,6 +10,7 @@ namespace AgendamentoWebAPI.Models
         public int Id { get; set; }
         public int MedicoId { get; set; }
         public string NomeMedico { get; set; }
+        public string CrmMedico { get; set; }
         public int PacienteId { get; set; }
         public string NomePaciente { get; set; }
         public int EspecialidadeId { get; set; }
@@ -19,5 +20,6 @@ namespace AgendamentoWebAPI.Models
         public int StatusConsultaId { get; set; }
         public string StatusConsulta { get; set; }
         public DateTime DataAgendamento { get; set; }
+        public string LinkConsulta { get; set;}
     }
 }

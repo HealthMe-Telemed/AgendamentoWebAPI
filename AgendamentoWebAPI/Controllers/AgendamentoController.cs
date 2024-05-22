@@ -58,8 +58,8 @@ namespace AgendamentoWebAPI.Controllers
         public async Task<IActionResult> PostAgendamento([FromBody] AgendamentoForm agendamentoForm){
             var agendamentoRealizado = await _agendamentoService.CadastrarAgendamento(agendamentoForm);
             
-            if(!agendamentoRealizado) return BadRequest("Não foi possível cadastrar o agendamento");
-            return Ok("Agendamento realizado com sucesso!");
+            if(agendamentoRealizado is null) return BadRequest("Não foi possível cadastrar o agendamento");
+            return Ok(agendamentoRealizado);
         }
 
         [HttpDelete]

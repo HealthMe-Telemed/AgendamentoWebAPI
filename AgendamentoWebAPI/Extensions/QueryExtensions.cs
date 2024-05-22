@@ -35,7 +35,7 @@ namespace AgendamentoWebAPI.Extensions
           WHERE ATC.medico_id = @idMedico;";
 
         public static string BuscarAgendamentosPorId() => @"
-        SELECT A.id AS 'Id', A.medico_id AS 'MedicoId', VM.nome AS 'NomeMedico', A.paciente_id AS 'PacienteId', VP.nome AS 'NomePaciente', A.especialidade_id AS 'EspecialidadeId', E.descricao AS 'Especialidade', A.tipo_consulta_id AS 'TipoConsultaId', TC.descricao AS 'TipoConsulta', A.status_id AS 'StatusConsultaId', S.descricao AS 'StatusConsulta', A.data_agendada AS 'DataAgendamento', C.link_consulta As 'LinkConsulta' FROM agendamento A
+        SELECT A.id AS 'Id', A.medico_id AS 'MedicoId', VM.nome AS 'NomeMedico', VM.CRM AS 'CrmMedico', A.paciente_id AS 'PacienteId', VP.nome AS 'NomePaciente', A.especialidade_id AS 'EspecialidadeId', E.descricao AS 'Especialidade', A.tipo_consulta_id AS 'TipoConsultaId', TC.descricao AS 'TipoConsulta', A.status_id AS 'StatusConsultaId', S.descricao AS 'StatusConsulta', A.data_agendada AS 'DataAgendamento', C.link_consulta As 'LinkConsulta' FROM agendamento A
             INNER JOIN v_medico VM ON VM.id = A.medico_id
             INNER JOIN especialidade E ON E.id = A.especialidade_id
             INNER JOIN v_paciente VP ON VP.IdPaciente = A.paciente_id
@@ -68,16 +68,21 @@ namespace AgendamentoWebAPI.Extensions
 
         public static string InserirAgendamento() => @"
         INSERT INTO agendamento(medico_id, paciente_id, especialidade_id, tipo_consulta_id, status_id, data_agendada)
-        VALUES(@medicoId, @pacienteId, @especialidadeId, @tipoConsultaId, @statusId, @dataAgendada);
-        SET @idAgendamento = LAST_INSERT_ID();
-        INSERT INTO consulta(agendamento_id, tipo_consulta_id, link_consulta) VALUES (@idAgendamento, 1, 'exame1.com.br');";
-
+        VALUES(@medicoId, @pacienteId, @especialidadeId, @tipoConsultaId, @statusId, @dataAgendada);";
         public static string AtualizarAgendamento() => @"
         UPDATE agendamento SET data_agendada = @dataAgendada
         WHERE id = @idAgendamento;";
 
         public static string CancelarAgendamento() => @"
         UPDATE agendamento SET status_id = 3 WHERE status_id = 1 AND id = @agendamentoId;";
+
+        public static string BuscarAgendamentoRecemCriado() => @"SELECT DISTINCT  a.id AS 'Id', a.data_agendada as 'DataAgendamento', u_medico.email AS 'EmailMedico', u_paciente.email AS 'EmailPaciente'
+FROM agendamento a
+JOIN medico m ON a.medico_id = m.id
+JOIN paciente p ON a.paciente_id = p.id
+JOIN usuario u_medico ON m.usuario_id = u_medico.id
+JOIN usuario u_paciente ON p.usuario_id = u_paciente.id
+WHERE a.id = (SELECT max(id) FROM agendamento);";
     }
 
 }

@@ -14,5 +14,6 @@ namespace AgendamentoWebAPI.Repository
         public Task<bool> AtualizarAgendamento(int idAgendamento, AgendamentoForm agendamentoForm);
         public Task<bool> CadastrarAgendamento(AgendamentoForm agendamentoForm);
         public Task<bool> CancelarAgendamento(int idAgendamento);
+        public Task<AgendamentoCriado> BuscarAgendamentoRecemCriado();
     }
 }

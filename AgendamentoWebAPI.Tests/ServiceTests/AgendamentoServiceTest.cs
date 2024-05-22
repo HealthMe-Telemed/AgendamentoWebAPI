@@ -31,6 +31,8 @@ namespace AgendamentoWebAPI.Tests.ServiceTests
                 DataAgendada = new DateTime(2024, 5, 20)
             };
             agendamentoDatabaseMock.Setup(s => s.CadastrarAgendamento(agendamentoFormMock)).ReturnsAsync(true);
+            agendamentoDatabaseMock.Setup(s => s.BuscarAgendamentoRecemCriado()).ReturnsAsync(new AgendamentoCriado());
+            
             var service = new AgendamentoService(agendamentoDatabaseMock.Object);
 
             //Act
@@ -39,8 +41,7 @@ namespace AgendamentoWebAPI.Tests.ServiceTests
 
             //Assert
 
-            Assert.IsType<bool>(result);
-            Assert.True(result);
+            Assert.IsType<AgendamentoCriado>(result);
         }
 
         [Fact]
@@ -66,8 +67,7 @@ namespace AgendamentoWebAPI.Tests.ServiceTests
 
             //Assert
 
-            Assert.IsType<bool>(result);
-            Assert.False(result);
+            Assert.Null(result);
         }
 
         [Fact]

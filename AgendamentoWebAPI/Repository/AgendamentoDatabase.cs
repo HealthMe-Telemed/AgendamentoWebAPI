@@ -157,5 +157,22 @@ namespace AgendamentoWebAPI.Repository
                 throw new Exception("Ocorreu um erro inesperado!!");
             }
         }
+
+        public async Task<AgendamentoCriado> BuscarAgendamentoRecemCriado()
+        {
+            try
+            {
+                _logger.LogInformation($"Buscando o agendamento recém criado...");
+                
+                var agendamento = await _database.QueryFirstOrDefaultAsync<AgendamentoCriado>(QueryExtensions.BuscarAgendamentoRecemCriado());
+                return agendamento;
+            }
+
+            catch(Exception ex)
+            {
+                _logger.LogError($"Ocorreu um erro inesperado!! Segue o erro: {ex.Message}");
+                throw new Exception("Ocorreu um erro inesperado!!");
+            }
+        }
     }
 }
