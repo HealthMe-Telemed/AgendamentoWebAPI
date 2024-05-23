@@ -55,7 +55,7 @@ namespace AgendamentoWebAPI.Repository
         {
             try
             {
-                _logger.LogInformation($"Tentando cadastrar o agendamento no sistema...");
+                _logger.LogInformation($"Tentando cancelar o agendamento {idAgendamento} no sistema...");
                 
                 await _database.ExecuteAsync(QueryExtensions.CancelarAgendamento(),
                 new {  
@@ -166,6 +166,32 @@ namespace AgendamentoWebAPI.Repository
                 
                 var agendamento = await _database.QueryFirstOrDefaultAsync<AgendamentoCriado>(QueryExtensions.BuscarAgendamentoRecemCriado());
                 return agendamento;
+            }
+
+            catch(Exception ex)
+            {
+                _logger.LogError($"Ocorreu um erro inesperado!! Segue o erro: {ex.Message}");
+                throw new Exception("Ocorreu um erro inesperado!!");
+            }
+        }
+		
+		public async Task<bool> EncerrarAgendamento(int idAgendamento)
+        {
+            try
+            {
+                _logger.LogInformation($"Tentando encerrar o agendamento {idAgendamento} no sistema...");
+                
+                await _database.ExecuteAsync(QueryExtensions.EncerrarAgendamento(),
+                new {  
+                    agendamentoId = idAgendamento
+                });
+
+                return true;
+            }
+
+            catch(MySqlException mysqlEx){
+                _logger.LogError($"Não foi possível encerrar o agendamento: {mysqlEx.ErrorCode} {mysqlEx.Message}");
+                return false;
             }
 
             catch(Exception ex)

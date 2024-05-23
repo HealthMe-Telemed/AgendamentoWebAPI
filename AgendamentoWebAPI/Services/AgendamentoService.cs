@@ -54,5 +54,11 @@ namespace AgendamentoWebAPI.Services
             return atualizado;
 
         }
+		
+		 public async Task<bool> EncerrarAgendamento(int idAgendamento)
+        {
+            var agendamentoEncerrado = await _agendamentoDatabase.EncerrarAgendamento(idAgendamento);
+            return agendamentoEncerrado;
+        }
     }
 }

@@ -63,6 +63,19 @@ namespace AgendamentoWebAPI.Controllers
         }
 
         [HttpDelete]
+        [Route("{idAgendamento}/encerrar")]
+        [Authorize(Roles = "Paciente,Medico")]
+        public async Task<IActionResult> EncerrarAgendamento(int idAgendamento)
+        {
+
+            var agendamentoEncerrado = await _agendamentoService.EncerrarAgendamento(idAgendamento);
+
+            if (!agendamentoEncerrado) return BadRequest("Não foi possível encerrar o agendamento");
+
+            return Ok("Agendamento encerrado com sucesso");
+        }
+		
+		[HttpDelete]
         [Route("{idAgendamento}")]
         [Authorize(Roles = "Paciente,Medico")]
         public async Task<IActionResult> CancelarAgendamento(int idAgendamento)

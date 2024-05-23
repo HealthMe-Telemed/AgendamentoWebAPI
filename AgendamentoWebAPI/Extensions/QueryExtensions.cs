@@ -75,6 +75,9 @@ namespace AgendamentoWebAPI.Extensions
 
         public static string CancelarAgendamento() => @"
         UPDATE agendamento SET status_id = 3 WHERE status_id = 1 AND id = @agendamentoId;";
+		
+		public static string EncerrarAgendamento() => @"
+        UPDATE agendamento SET status_id = 2 WHERE status_id = 1 AND id = @agendamentoId;";
 
         public static string BuscarAgendamentoRecemCriado() => @"SELECT DISTINCT  a.id AS 'Id', a.data_agendada as 'DataAgendamento', u_medico.email AS 'EmailMedico', u_paciente.email AS 'EmailPaciente'
 FROM agendamento a
