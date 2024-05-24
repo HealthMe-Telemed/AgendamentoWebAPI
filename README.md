@@ -4,7 +4,7 @@ Esta API tem como objetivo gerenciar agendamentos, desde fornecer as opções di
 
 ## Pré Requisitos
 
-.NET Core 6.0 instalado.
+.NET Core 6.0 instalado e [banco de dados base](https://github.com/HealthMe-Telemed/BD) em execução.
 
 Para a instalação do .NET 6.0, deve-se instalá-lo pelo seguinte link https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 
